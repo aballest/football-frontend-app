@@ -1,0 +1,50 @@
+<div class="teams-container">
+  <button mat-raised-button color="primary" (click)="addTeam()">Add Team</button>
+  <table mat-table [dataSource]="teams" class="mat-elevation-z8">
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef> Name </th>
+      <td mat-cell *matCellDef="let team"> {{team.name}} </td>
+    </ng-container>
+
+    <!-- TLA Column -->
+    <ng-container matColumnDef="tla">
+      <th mat-header-cell *matHeaderCellDef> TLA </th>
+      <td mat-cell *matCellDef="let team"> {{team.tla}} </td>
+    </ng-container>
+
+    <!-- Stadium Column -->
+    <ng-container matColumnDef="stadium">
+      <th mat-header-cell *matHeaderCellDef> Stadium </th>
+      <td mat-cell *matCellDef="let team"> {{team.stadium}} </td>
+    </ng-container>
+
+    <!-- Website Column -->
+    <ng-container matColumnDef="website">
+      <th mat-header-cell *matHeaderCellDef> Website </th>
+      <td mat-cell *matCellDef="let team"> <a href="{{team.website}}" target="_blank">{{team.website}}</a> </td>
+    </ng-container>
+
+    <!-- Founded Column -->
+    <ng-container matColumnDef="founded">
+      <th mat-header-cell *matHeaderCellDef> Founded </th>
+      <td mat-cell *matCellDef="let team"> {{team.founded}} </td>
+    </ng-container>
+
+    <!-- Action Column -->
+    <ng-container matColumnDef="action">
+      <th mat-header-cell *matHeaderCellDef> Action </th>
+      <td mat-cell *matCellDef="let team">
+        <button mat-button (click)="updateTeam(team.id)">Update</button>
+        <button mat-button (click)="deleteTeam(team.id)">Delete</button>
+        <button mat-button (click)="viewPlayerDetails(team.id)">Player Details</button>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+
+  <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+</div>
